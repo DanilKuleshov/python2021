@@ -1,66 +1,56 @@
-# coding: utf-8
 from tkinter import *
 import random
 
 root = Tk()
-root.title(u'Виселица')
+root.title('Виселица')
 canvas = Canvas(root, width=600, height=600)
 canvas.pack(fill=BOTH)
-
 
 def but():
     y = 0
     while y < 600:
         x = 0
         while x < 600:
-            canvas.create_rectangle(x, y, x + 33, y + 27, fill="white", outline="blue")
+            canvas.create_rectangle(x, y, x + 30, y + 30, fill="Gainsboro", outline="black")
 
-            x = x + 33
-        y = y + 27
+            x = x + 30
+        y = y + 30
 
 
-# but()
 faq = '''
-Принцип игры
-Андроид загадывает слово — пишет на бумаге
-первую и последнюю букву слова и отмечает
-места для остальных букв, например чертами .
-Также рисуется виселица.
-Игрок предлагает букву, которая может входить
-в это слово.Если такая буква есть в слове,
-то Андроид пишет её над соответствующими этой
-букве чертами — столько раз, сколько она
-встречается в слове.Если такой буквы нет, то
-к виселице добавляется круг в петле,изображающий
-голову.Игрок продолжает отгадывать буквы до тех
-пор,пока не отгадает всё слово.За каждый
-неправильный ответ Андроид добавляет одну часть
-туловища к виселице(их 6: голова, туловище, 2
-руки и 2 ноги).Если туловище в виселице нарисовано
-полностью, то отгадывающий игрок проигрывает,
-считается повешенным.
-Если игроку удаётся угадать слово, он выигрывает.
-'''
-canvas.create_text(310, 240, text=faq, fill="purple", font=("Helvectica", "14"))
-slova = [u'виселица', u'смартфон', u'маргарин', u'мегагерц', u'страница', u'креветка', u'микрофон']
+Суть игры
+Суть этой игры в отгадывании слова по буквам
+за определённое количество ходов.
 
+Бот задумывает какое-нибудь слово. Пишет его 
+первую и последнюю буквы, а вместо недостающих 
+букв ставит черточки. Задача игрока - отгадать 
+загаданное слово. Он называет любую букву. 
+Если эта буква в слове есть - ведущий вписывает 
+её своё на место. Если нет, то данная буква будет 
+подсвечена красным цветом, затем начинают рисовать 
+"виселицу". За эти несколько попыток игрок должен 
+угадать слово. Если не получилось - проиграл.
+'''
+canvas.create_text(310, 240, text=faq, fill="DimGray", font=("Monospace", "15"))
+slova = ['виселица', 'смартфон', 'маргарин', 'мегагерц', 'страница', 'креветка', 'микрофон', 'автопарк']
 
 def arr():
     but()
     word = random.choice(slova)
-    # word = u'микрофон'
+
     wo = word[1:-1]
     wor = []
     for i in wo:
         wor.append(i)
-    a0 = canvas.create_text(282, 40, text=word[0], fill="purple", font=("Helvectica", "18"))
-    a1 = canvas.create_text(315, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a2 = canvas.create_text(347, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a3 = canvas.create_text(380, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a4 = canvas.create_text(412, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a5 = canvas.create_text(444, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a6 = canvas.create_text(477, 40, text='_', fill="purple", font=("Helvectica", "18"))
-    a6 = canvas.create_text(510, 40, text=word[-1], fill="purple", font=("Helvectica", "18"))
+    a0 = canvas.create_text(282, 40, text=word[0], fill="purple", font=("Monospace", "18"))
+    a1 = canvas.create_text(315, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a2 = canvas.create_text(347, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a3 = canvas.create_text(380, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a4 = canvas.create_text(412, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a5 = canvas.create_text(444, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a6 = canvas.create_text(477, 40, text='_', fill="purple", font=("Monospace", "18"))
+    a6 = canvas.create_text(510, 40, text=word[-1], fill="purple", font=("Monospace", "18"))
     list1 = [1, 2, 3, 4, 5, 6]
     alfabet = u'абвгдеёжзийклмнопрстуфхцчшщъыьэюя'
     canvas.create_line(10, 10, 200, 10, width=4)
@@ -96,7 +86,7 @@ def arr():
 
             x1, y1 = kord()
             win.append(v)
-            a2 = canvas.create_text(x1, y1, text=wo[ind], fill="purple", font=("Helvectica", "18"))
+            a2 = canvas.create_text(x1, y1, text=wo[ind], fill="purple", font=("Monospace", "18"))
             btn[key]["bg"] = "green"
             if not v in wor:
                 btn[key]['state'] = 'disabled'
@@ -105,9 +95,9 @@ def arr():
                 ind2 = wor.index(v)
                 b2 = list1[ind2]
                 x1, y1 = kord()
-                canvas.create_text(x1, y1, text=wo[ind2], fill="purple", font=("Helvectica", "18"))
+                canvas.create_text(x1, y1, text=wo[ind2], fill="purple", font=("Monospace", "18"))
             if len(win) == 6:
-                canvas.create_text(150, 150, text="You win", fill="purple", font=("Helvectica", "16"))
+                canvas.create_text(310, 400, text="You win!", fill="LimeGreen", font=("Monospace", "30"))
                 for i in alfabet:
                     btn[i]['state'] = 'disabled'
         else:
@@ -160,7 +150,7 @@ def arr():
 
     def golova():
 
-        canvas.create_oval(79, 59, 120, 80, width=4, fill="white")
+        canvas.create_oval(79, 59, 120, 80, width=4, fill="Gainsboro")
 
         root.update()
 
@@ -195,13 +185,14 @@ def arr():
         root.update()
 
     def end():
-        canvas.create_text(150, 150, text="The end", fill="purple", font=("Helvectica", "16"))
+        canvas.create_text(310, 400, text="The end", fill="red", font=("Monospace", "30"))
+        canvas.create_text(310, 460, text="If you want to play again, pleas enter the Start", fill="red", font=("Monospace", "15"))
         canvas.create_line(100, 10, 100, 60, width=4)
         for i in alfabet:
             btn[i]['state'] = 'disabled'
 
 
-btn01 = Button(root, text='Start', width=3, height=1, command=lambda: arr())
-btn01.place(x=298, y=542)
-btn01["bg"] = "red"
+btn01 = Button(root, text='Start', width=40, height=1, command=lambda: arr())
+btn01.place(x=165, y=542)
+btn01["bg"] = "Gray"
 root.mainloop()
