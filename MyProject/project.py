@@ -98,6 +98,7 @@ def arr():
                 canvas.create_text(x1, y1, text=wo[ind2], fill="purple", font=("Monospace", "18"))
             if len(win) == 6:
                 canvas.create_text(310, 400, text="You win!", fill="LimeGreen", font=("Monospace", "30"))
+                canvas.create_text(310, 460, text="If you want to play again, pleas enter Restart", fill="LimeGreen", font=("Monospace", "15"))
                 for i in alfabet:
                     btn[i]['state'] = 'disabled'
         else:
@@ -186,13 +187,20 @@ def arr():
 
     def end():
         canvas.create_text(310, 400, text="The end", fill="red", font=("Monospace", "30"))
-        canvas.create_text(310, 460, text="If you want to play again, pleas enter the Start", fill="red", font=("Monospace", "15"))
+        canvas.create_text(310, 460, text="If you want to play again, pleas enter the Restart", fill="red", font=("Monospace", "15"))
         canvas.create_line(100, 10, 100, 60, width=4)
         for i in alfabet:
             btn[i]['state'] = 'disabled'
 
 
-btn01 = Button(root, text='Start', width=40, height=1, command=lambda: arr())
+def changeText():
+    btn01['text'] = 'Restart'
+
+def together():
+    changeText()
+    arr()
+
+btn01 = Button(root, text='Start', width=40, height=1, command=lambda: together())
 btn01.place(x=165, y=542)
 btn01["bg"] = "Gray"
 root.mainloop()
