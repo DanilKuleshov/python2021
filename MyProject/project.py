@@ -130,24 +130,30 @@ def arr():
 
     x = 265
     y = 110
-    for i in alfabet[0:8]:
+    for i in alfabet[0:7]:
         gen(i, x, y)
         x = x + 33
     x = 265
     y = 137
-    for i in alfabet[8:16]:
+    for i in alfabet[7:14]:
         gen(i, x, y)
         x = x + 33
     x = 265
     y = 164
-    for i in alfabet[16:24]:
+    for i in alfabet[14:21]:
         gen(i, x, y)
         x = x + 33
     x = 265
     y = 191
-    for i in alfabet[24:33]:
+    for i in alfabet[21:28]:
         gen(i, x, y)
         x = x + 33
+    x = 298
+    y = 218
+    for i in alfabet[28:33]:
+        gen(i, x, y)
+        x = x + 33
+    canvas.create_rectangle(240, 90, 510, 270, fill="LightGray", outline="black")
 
     def golova():
 
